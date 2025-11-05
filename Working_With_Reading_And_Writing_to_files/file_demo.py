@@ -122,3 +122,18 @@ with open('test.txt' , 'r') as rf: # rf reading files (original file)
         for line in rf:
             wf.write(line)
       
+# one way of copying one image to another
+"""
+with open('Goku.jpg' , 'rb') as rf :
+    with open('Goku_copy.jpg' , 'wb') as wf:
+        for line in rf:
+            wf.write(line)
+"""
+# The second way is this
+with open("Goku.jpg" , 'rb') as rf:
+    with open("Goku_copy2.jpg" , 'wb') as wf:
+        chunk_size = 4096
+        read_chunks = rf.read(chunk_size)
+        while len(read_chunks) > 0:
+            wf.write(read_chunks)
+            read_chunks = rf.read(chunk_size)
